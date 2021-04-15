@@ -1,5 +1,5 @@
 # devops_course_levelup
-Курс "DevOps Engineer" от LevelUp (домашние задания) + выпускной проект:<br><br>
+Курс "DevOps Engineer" от LevelUp: домашние задания + выпускной проект<br><br>
 <b>homework_5</b> - домашнее задание 5. Тема: PostgreSQL<br>
 <b>homework_6</b> - домашнее задание 6. Тема: GIT<br>
 <b>homework_8</b> - домашнее задание 8. Тема: Docker<br>
