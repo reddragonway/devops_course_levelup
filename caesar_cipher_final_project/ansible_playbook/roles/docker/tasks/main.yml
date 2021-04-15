@@ -1,0 +1,19 @@
+---
+- name: Install docker
+  apt:
+    name: docker.io
+    update_cache: yes
+    state: latest
+
+- name: Install docker-compose
+  apt:
+    name: docker-compose
+    update_cache: yes
+    state: latest
+
+- name: Add user "Jenkins" to "Docker" group
+  user:
+    name: jenkins
+    groups: jenkins,docker
+    append: yes
+  
