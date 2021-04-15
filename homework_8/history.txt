@@ -1,0 +1,14 @@
+sudo apt update -y && sudo apt install docker.io -y
+sudo su
+curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+git clone https://github.com/dockersamples/example-voting-app.git
+cd example-voting-app
+cp docker-compose.yml docker-compose.prod.yml
+# редактируем первый yml (vote), меняем порт на 80
+nano docker-compose.yml 
+# редактируем второй yml (result), меняем порт на 8080
+nano docker-compose.prod.yml
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# Ура! Приложение работает :)

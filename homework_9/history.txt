@@ -1,0 +1,21 @@
+# устанавливаем софт на слэйвы
+ansible all -m apt -a "name=jed state=latest"
+ansible all -m apt -a "name=vsftpd state=latest"
+ansible all -m apt -a "name=nginx state=latest"
+
+# создаем группу students и добавляем туда пользователя student с паролем 12345
+ansible all -m group -a "name=students" 
+ansible all -m user -a "name=student groups=students append=yes" 
+ansible all -m user -a "name=student password={{ newpassword|password_hash('sha512') }}"  --extra-vars "newpassword=12345"
+
+# создаем иерархию каталогов в домашнем каталоге student
+ansible all -m file -a "path=/home/student/dir1 state=directory" && ansible all -m file -a "path=/home/student/dir2 state=directory" && ansible all -m file -a "path=/home/student/dir3 state=directory"
+ansible all -m file -a "path=/home/student/dir1/secret1 state=directory" && ansible all -m file -a "path=/home/student/dir2/secret2 state=directory" && ansible all -m file -a "path=/home/student/dir3/secret3 state=directory"
+ansible all -m file -a "path=/home/student/dir1/secret1/password.txt state=touch" && ansible all -m file -a "path=/home/student/dir2/secret2/password.txt state=touch" && ansible all -m file -a "path=/home/student/dir3/secret3/password.txt state=touch"
+
+# собрать информацию о сервере (сетевые настройки, провайдер, железо)
+ansible all -m setup # вся информация о слейв-машинах
+ansible all -m setup -a 'gather_subset=network' # полная информация о сети
+ansible all -m setup -a 'filter=ansible_all_ipv4_addresses' # информация конкретно о IPv4-адресах 
+ansible all -m setup -a 'gather_subset=hardware' # полная информация о железе
+ansible all -m setup -a 'filter=ansible_processor'# информация конкретно о процессорах

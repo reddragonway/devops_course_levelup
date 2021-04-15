@@ -1,0 +1,41 @@
+---
+- name: Check cores
+  setup:
+    filter: ansible_processor_cores 
+    
+- name: Create group
+  group:
+    name: hw10users
+    state: present
+    
+- name: Create user
+  user:
+    name: hw10user
+    groups: hw10users
+    password: sha512pass
+    home: /user/hw10user
+    state: present
+
+- name: Install nginx
+  apt:
+    name: nginx
+    update_cache: yes
+    state: latest
+    
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+    
+- name: Copy file HelloWorld
+  copy:
+    src: files/index.html
+    dest: /usr/share/nginx/html/index.html
+    mode: 0644
+    
+- name: Check nginx status
+  command: service nginx status
+  args:
+    warn: false
+
+    

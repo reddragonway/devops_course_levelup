@@ -1,0 +1,14 @@
+# базовая настройка машины, затем авторизуемся в gcloud
+gcloud init
+gcloud services enable container.googleapis.com
+gcloud config set project supple-design-304411
+gcloud config set compute/zone europe-north1-a
+gcloud container clusters create hello-cluster
+gcloud container clusters get-credentials hello-cluster
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+kubectl expose deployment hello-server --type LoadBalancer   --port 80 --target-port 8080
+kubectl get pods
+kubectl get service hello-server
+# приложение доступно, теперь можно удалить кластер
+kubectl delete service hello-server
+gcloud container clusters delete hello-cluster

@@ -1,0 +1,39 @@
+---
+- name: install vsftp
+  apt:
+    name: vsftpd
+    update_cache: no
+    state: present
+
+- name: add user vsftpd
+  user:
+    name: ftpu10
+    group: ftp
+    shell: /bin/false
+    home: "{{ remote_dir }}"
+    password: "sha512pass"
+    state: present
+
+- name: make dir
+  file:
+    path: "{{ remote_dir }}"
+    state: directory
+    owner: ftpu10
+    group: ftp
+    mode: 0770
+    recurse: yes
+
+- name: edit config
+  blockinfile:
+    path: /etc/vsftpd.conf
+    create: yes
+    marker: ""
+    block: |
+      listen=YES
+      anonymous_enable=YES
+      ftpd_banner=Welcome to FTP for homework10
+
+- name: restart vsftpd
+  service:
+    name: vsftpd
+    state: restarted

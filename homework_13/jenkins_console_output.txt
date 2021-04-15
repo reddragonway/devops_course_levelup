@@ -1,0 +1,81 @@
+Started by user levelup spb
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/build_simple_app
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/pydevlab/rock-paper-scissors.git # timeout=10
+Fetching upstream changes from https://github.com/pydevlab/rock-paper-scissors.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.20.1'
+ > git fetch --tags --force --progress -- https://github.com/pydevlab/rock-paper-scissors.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/patch-1^{commit} # timeout=10
+Checking out Revision 4e2f2529af208d33e06fa799389504e49762dd39 (refs/remotes/origin/patch-1)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 4e2f2529af208d33e06fa799389504e49762dd39 # timeout=10
+Commit message: "Merge pull request #18 from mugunthanr89/patch-1"
+ > git rev-list --no-walk 4e2f2529af208d33e06fa799389504e49762dd39 # timeout=10
+[build_simple_app] $ /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/localmvn/bin/mvn clean install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.mcnz.rps.web:roshambo >----------------------
+[INFO] Building roshambo web application 1.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.0.0:clean (default-clean) @ roshambo ---
+[INFO] Deleting /var/jenkins_home/workspace/build_simple_app/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ roshambo ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/jenkins_home/workspace/build_simple_app/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ roshambo ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 5 source files to /var/jenkins_home/workspace/build_simple_app/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:testResources (default-testResources) @ roshambo ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/jenkins_home/workspace/build_simple_app/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ roshambo ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /var/jenkins_home/workspace/build_simple_app/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.20.1:test (default-test) @ roshambo ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.mcnz.rps.GameSummaryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 s - in com.mcnz.rps.GameSummaryTest
+[INFO] Running com.mcnz.rps.ScoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in com.mcnz.rps.ScoreTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-war-plugin:3.2.0:war (default-war) @ roshambo ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [roshambo] in [/var/jenkins_home/workspace/build_simple_app/target/roshambo]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/jenkins_home/workspace/build_simple_app/src/main/webapp]
+[INFO] Webapp assembled in [39 msecs]
+[INFO] Building war: /var/jenkins_home/workspace/build_simple_app/target/roshambo.war
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ roshambo ---
+[INFO] Installing /var/jenkins_home/workspace/build_simple_app/target/roshambo.war to /var/jenkins_home/.m2/repository/com/mcnz/rps/web/roshambo/1.0/roshambo-1.0.war
+[INFO] Installing /var/jenkins_home/workspace/build_simple_app/pom.xml to /var/jenkins_home/.m2/repository/com/mcnz/rps/web/roshambo/1.0/roshambo-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.536 s
+[INFO] Finished at: 2021-03-24T12:31:33Z
+[INFO] ------------------------------------------------------------------------
+[DeployPublisher][INFO] Attempting to deploy 1 war file(s)
+[DeployPublisher][INFO] Deploying /var/jenkins_home/workspace/build_simple_app/target/roshambo.war to container Tomcat 9.x Remote with context rps
+  [/var/jenkins_home/workspace/build_simple_app/target/roshambo.war] is not deployed. Doing a fresh deployment.
+  Deploying [/var/jenkins_home/workspace/build_simple_app/target/roshambo.war]
+Finished: SUCCESS

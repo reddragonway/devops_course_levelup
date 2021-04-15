@@ -1,0 +1,30 @@
+# права суперпользователя
+sudo su
+# обновляем репы и устанавливаем софт
+apt update && apt install postgresql postgresql-contrib pg-activity -y 
+# клонируем базу с гита
+git clone https://github.com/pthom/northwind_psql.git
+# меняем юзера
+su postgres
+# входим в PostgreSQL и создаем БД homework
+psql
+create database homework;
+\q
+# заливаем содержимое в БД
+psql -d homework -f /home/red/northwind_psql/northwind.sql
+# делаем дамп БД
+mkdir /tmp/dump_backup
+pg_dump homework > /tmp/dump_backup/homework.sql
+# входим в PostgreSQL и роняем БД 
+psql
+drop database homework;
+# создаем БД
+create database homework;
+\q
+# восстанавливаем содержимое БД из дампа
+psql homework < /tmp/dump_backup/homework.sql
+# проверяем что БД восстановилась (опционально)
+psql
+\c homework
+\dt+
+# Ура! Получилось :)

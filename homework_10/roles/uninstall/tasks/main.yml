@@ -1,0 +1,20 @@
+---  
+- name: Remove hw10user
+  user:
+    name: hw10user
+    state: absent
+    
+- name: Remove group hw10users
+  group:
+    name: hw10users
+    state: absent
+    
+- name: Remove file index.html
+  file:
+    path: usr/share/nginx/html/index.html
+    state: absent
+    
+- name: Remove nginx
+  apt:
+    name: nginx
+    state: absent
