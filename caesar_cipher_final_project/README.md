@@ -28,7 +28,7 @@
 <b>Как развернуть приложение:</b><br>
 -на Linux сервере предварительно нужно установить docker, docker-compose (можно воспользоваться ansible плейбуком) <br>
 -сделать <b>git clone</b> текущего репозитория<br>
--перейти в каталог caesar_cipher_final_project: <b>cd ./caesar_cipher</b> <br>
+-перейти в каталог caesar_cipher_final_project: <b>cd ./caesar_cipher_final_project</b> <br>
 -запустить docker-compose командой: <b>docker-compose up -d</b> <br>
 -сервисы будут доступны по адресам: http://ваш_ip:80 и http://ваш_ip:8081 соответственно <br>
 <br>
